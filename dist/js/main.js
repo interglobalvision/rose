@@ -95,6 +95,8 @@ var Site = function () {
 
     this.mobileThreshold = 601;
 
+    this.handleNavTrigger = this.handleNavTrigger.bind(this);
+
     $(window).resize(this.onResize.bind(this));
 
     $(document).ready(this.onReady.bind(this));
@@ -107,6 +109,9 @@ var Site = function () {
     key: 'onReady',
     value: function onReady() {
       _lazysizes2.default.init();
+
+      this.bindNavTriggers();
+      this.bindSectionClose();
     }
   }, {
     key: 'fixWidows',
@@ -116,6 +121,31 @@ var Site = function () {
         var string = $(this).html();
         string = string.replace(/ ([^ ]*)$/, '&nbsp;$1');
         $(this).html(string);
+      });
+    }
+  }, {
+    key: 'bindNavTriggers',
+    value: function bindNavTriggers() {
+      $('.js-nav-trigger').on('click', this.handleNavTrigger);
+    }
+  }, {
+    key: 'handleNavTrigger',
+    value: function handleNavTrigger(event) {
+      var sectionId = $(event.target).attr('data-id');
+      var $section = $('.content-overlay#' + sectionId);
+
+      if ($section.hasClass('show')) {
+        $section.removeClass('show');
+      } else {
+        $('.content-overlay.show').removeClass('show');
+        $section.addClass('show');
+      }
+    }
+  }, {
+    key: 'bindSectionClose',
+    value: function bindSectionClose() {
+      $('.section-close').on('click', function () {
+        $('.content-overlay.show').removeClass('show');
       });
     }
   }]);
