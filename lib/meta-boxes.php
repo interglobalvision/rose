@@ -158,7 +158,7 @@ function igv_cmb_metaboxes() {
 
     $stockists_metabox->add_group_field( $stockists_group, array(
       'name'       => esc_html__( 'Stockist', 'cmb2' ),
-      'id'         => 'address',
+      'id'         => 'stockist',
       'type'       => 'wysiwyg',
       'description' => esc_html__( 'Telephone links use tel:5555555555', 'cmb2' ),
       'options' => array(
