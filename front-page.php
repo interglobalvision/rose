@@ -46,10 +46,15 @@ if (have_posts()) {
   }
 ?>
 
-  <section id="about">
-    <div class="container grid-row">
-      <div class="grid-item">
-        <?php the_content(); ?>
+  <section id="about" class="content-overlay">
+    <div class="container grid-row justify-center">
+      <div class="grid-row grid-item item-s-11 no-gutter">
+        <div class="section-content grid-item font-size-large item-s-12 item-m-11">
+          <?php the_content(); ?>
+        </div>
+        <div class="grid-item item-s-1">
+          <div class="section-close u-pointer">X</div>
+        </div>
       </div>
     </div>
   </section>
@@ -57,17 +62,24 @@ if (have_posts()) {
 <?php
   if (!empty($stockists)) {
 ?>
-  <section id="stockists">
+  <section id="stockists" class="content-overlay">
     <div class="container grid-row">
-    <?php
-      foreach ($stockists as $stockist) {
-    ?>
-      <div class="grid-item item-s-12 item-m-4 item-l-3">
-        <?php echo apply_filters('the_content', $stockist['stockist']); ?>
+      <div class="grid-row grid-item item-s-11 no-gutter">
+      <?php
+        foreach ($stockists as $stockist) {
+      ?>
+        <div class="section-content grid-item item-s-12 item-m-4 item-l-3">
+          <?php echo apply_filters('the_content', $stockist['stockist']); ?>
+        </div>
+      <?php
+        }
+      ?>
       </div>
-    <?php
-      }
-    ?>
+      <div class="grid-row grid-item item-s-1 no-gutter">
+        <div class="grid-item">
+          <div class="section-close u-pointer">X</div>
+        </div>
+      </div>
     </div>
   </section>
 <?php
@@ -77,9 +89,12 @@ if (have_posts()) {
 <?php
   if (!empty($contact)) {
 ?>
-  <section id="contact">
-    <div class="container grid-row">
-      <div class="grid-item">
+  <section id="contact" class="content-overlay">
+    <div class="container grid-row justify-between">
+      <div class="grid-item item-s-4">
+        <div class="section-close u-pointer">X</div>
+      </div>
+      <div class="section-content grid-item item-s-12 item-m-8 text-align-right">
         <?php echo apply_filters('the_content', $contact); ?>
       </div>
     </div>
