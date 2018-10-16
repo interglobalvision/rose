@@ -26,7 +26,7 @@ if (have_posts()) {
         <div class="image-holder">
           <?php echo wp_get_attachment_image($image['image_id'], 'full'); ?>
           <div class="image-filter"></div>
-        <div>
+        </div>
       <?php
         if (!empty($image['caption'])) {
       ?>
