@@ -29,5 +29,18 @@ get_template_part('partials/seo');
 <section id="main-container">
 
   <header id="header">
-    <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+    <nav class="container grid-row">
+      <div class="grid-item item-s-12 item-m-4">
+        <h1><a href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
+      </div>
+      <div class="grid-item item-s-4 item-m-2">
+        <span data-id="about">About</span>
+      </div>
+      <div class="grid-item item-s-4 item-m-5">
+        <span data-id="stockists">Stockists</span>
+      </div>
+      <div class="grid-item item-s-4 item-m-1">
+        <span data-id="contact">Contact</span>
+      </div>
+    </nav>
   </header>
