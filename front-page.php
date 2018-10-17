@@ -159,16 +159,9 @@ if (have_posts()) {
     <div class="section-content-holder">
       <div class="section-content-wrapper">
         <div class="container padding-bottom-basic grid-row">
-          <div class="section-content grid-item item-s-12 item-m-8 offset-m-2 text-align-right padding-bottom-basic font-size-mid font-sans">
+          <div class="section-content grid-item item-s-12 offset-m-7 item-m-5 text-align-right padding-bottom-basic font-size-small font-sans">
             <?php echo apply_filters('the_content', $contact); ?>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="section-close-holder">
-      <div class="container grid-row justify-end">
-        <div class="grid-item item-s-1">
-          <span class="section-close"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" /></span>
         </div>
       </div>
     </div>
