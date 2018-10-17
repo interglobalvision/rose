@@ -3,6 +3,7 @@
 
 // Import dependencies
 import lazySizes from 'lazysizes';
+import smoothscroll from 'smoothscroll-polyfill';
 import 'jquery-ui';
 
 // Import style
@@ -10,7 +11,8 @@ import '../styl/site.styl';
 
 class Site {
   constructor() {
-    this.mobileThreshold = 601;
+    this.mobileThreshold = 720;
+    this.scrollOffset = 120;
 
     this.handleNavTrigger = this.handleNavTrigger.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
@@ -24,7 +26,7 @@ class Site {
   }
 
   onResize() {
-    if ($(window).width() < 720) {
+    if ($(window).width() < this.mobileThreshold) {
       this.disableDragging(true);
     } else {
       this.disableDragging(false);
@@ -33,6 +35,8 @@ class Site {
 
   onReady() {
     lazySizes.init();
+
+    smoothscroll.polyfill();
 
     this.bindNavTriggers();
     this.bindSectionClose();
@@ -54,17 +58,31 @@ class Site {
   }
 
   handleNavTrigger(event) {
-    const $navItem = $(event.target);
-    const sectionId = $navItem.attr('data-id');
+    const sectionId = $(event.target).attr('data-id');
     const $section = $('.content-overlay#' + sectionId);
 
+    if ($(window).width() < this.mobileThreshold) {
+      this.handleScrollTo($section);
+    } else {
+      this.handleSectionOpen(event.target, $section);
+    }
+  }
+
+  handleScrollTo($section) {
+    window.scroll({
+      top: $section.offset().top - this.scrollOffset,
+      behavior: 'smooth'
+    });
+  }
+
+  handleSectionOpen(target, $section) {
     if ($section.hasClass('show')) {
       this.handleSectionClose();
     } else {
       $('.content-overlay.show').removeClass('show');
       $('.nav-item.active').removeClass('active');
       $section.addClass('show');
-      $navItem.addClass('active');
+      $(target).addClass('active');
       $('body').addClass('overlay-active');
     }
   }

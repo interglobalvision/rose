@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "jquery-ui-dist": "^1.12.1",
-    "jquery-ui-touch-punch": "^0.2.3"
+    "jquery-ui-touch-punch": "^0.2.3",
+    "smoothscroll-polyfill": "^0.4.3"
   }
 }
