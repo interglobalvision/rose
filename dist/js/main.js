@@ -106,6 +106,11 @@ var Site = function () {
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleSectionClose = this.handleSectionClose.bind(this);
+    this.positionCustomCursor = this.positionCustomCursor.bind(this);
+    this.toggleCursorColor = this.toggleCursorColor.bind(this);
+    this.toggleCursorVisibility = this.toggleCursorVisibility.bind(this);
+
+    this.$cursor = $('#cursor');
 
     $(window).resize(this.onResize.bind(this));
 
@@ -132,6 +137,7 @@ var Site = function () {
       this.bindSectionClose();
       this.initDragging();
       this.bindImageClick();
+      this.bindCustomCursor();
     }
   }, {
     key: 'fixWidows',
@@ -236,6 +242,47 @@ var Site = function () {
       var $image = $(event.target).hasClass('image-container') ? $(event.target) : $(event.target).closest('.image-container');
       $('.image-active').removeClass('image-active');
       $image.addClass('image-active');
+    }
+  }, {
+    key: 'bindCustomCursor',
+    value: function bindCustomCursor() {
+      this.cursorHeight = this.$cursor.height();
+      this.cursorWidth = this.$cursor.width();
+
+      $(document).on({
+        'mousemove': this.positionCustomCursor,
+        'mousedown': this.toggleCursorColor,
+        'mouseup': this.toggleCursorColor
+      });
+
+      $('a, .nav-item, .section-close').on({
+        'mouseenter': this.toggleCursorVisibility,
+        'mouseleave': this.toggleCursorVisibility
+      });
+    }
+  }, {
+    key: 'positionCustomCursor',
+    value: function positionCustomCursor(event) {
+      var mouseY = event.clientY - this.cursorHeight / 2;
+      var mouseX = event.clientX - this.cursorWidth / 2;
+
+      this.$cursor.css({
+        top: mouseY + 'px',
+        left: mouseX + 'px'
+      });
+    }
+  }, {
+    key: 'toggleCursorColor',
+    value: function toggleCursorColor(event) {
+      if (event.which === 3) {
+        return;
+      } // Right-click
+      this.$cursor.toggleClass('down');
+    }
+  }, {
+    key: 'toggleCursorVisibility',
+    value: function toggleCursorVisibility() {
+      this.$cursor.toggleClass('hide');
     }
   }]);
 
