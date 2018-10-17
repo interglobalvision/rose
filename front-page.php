@@ -97,7 +97,7 @@ if (have_posts()) {
       <div class="section-content font-size-large">
         <div class="container padding-bottom-basic grid-row">
           <div class="grid-item item-s-12 item-m-10 no-gutter grid-row justify-center">
-            <div class="grid-item item-s-12 item-m-11">
+            <div class="grid-item item-s-12 item-m-11 font-sans">
               <?php the_content(); ?>
             </div>
           </div>
@@ -153,7 +153,7 @@ if (have_posts()) {
     <div class="section-content-holder">
       <div class="section-content">
         <div class="container padding-bottom-basic grid-row">
-          <div class="grid-item item-s-12 item-m-8 offset-m-2 text-align-right padding-bottom-basic font-size-mid">
+          <div class="grid-item item-s-12 item-m-8 offset-m-2 text-align-right padding-bottom-basic font-size-mid font-sans">
             <?php echo apply_filters('the_content', $contact); ?>
           </div>
         </div>
