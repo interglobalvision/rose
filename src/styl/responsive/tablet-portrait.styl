@@ -25,6 +25,11 @@
   .mobile-only
     display: none !important
 
+  body,
+  html
+    overflow: hidden
+    cursor: none
+
   #cursor
     position: absolute
     z-index: 1000
@@ -51,11 +56,6 @@
     padding: $margin-micro
 
   // OVERLAY
-
-  body,
-  html
-    overflow: hidden
-    cursor: none
 
   body
     &.overlay-active
