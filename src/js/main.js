@@ -152,10 +152,6 @@ class Site {
       'mouseup': this.toggleCursorColor,
     });
 
-    /*document.addEventListener('mousemove', this.positionCustomCursor);
-    document.addEventListener('mousedown', this.toggleCursorColor);
-    document.addEventListener('mouseup', this.toggleCursorColor);*/
-
     $('a, .nav-item, .section-close').on({
       'mouseenter': this.toggleCursorVisibility,
       'mouseleave': this.toggleCursorVisibility
@@ -166,15 +162,14 @@ class Site {
     const mouseY = event.clientY - (this.cursorHeight / 2);
     const mouseX = event.clientX - (this.cursorWidth / 2);
 
-    console.log(mouseY, mouseX);
-
     this.$cursor.css({
       top: mouseY + 'px',
       left: mouseX + 'px'
     });
   }
 
-  toggleCursorColor() {
+  toggleCursorColor(event) {
+    if (event.which === 3) { return }; // Right-click
     this.$cursor.toggleClass('down');
   }
 
