@@ -28,18 +28,18 @@ get_template_part('partials/seo');
 
 <section id="main-container">
 
-  <header id="header">
+  <header id="header" class="font-uppercase padding-bottom-basic padding-top-basic">
     <nav class="container grid-row">
-      <div class="grid-item item-s-12 item-m-4">
-        <h1 class="font-size-basic"><a class="nav-item" href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
+      <div class="grid-item item-s-12 item-m-4 margin-bottom-tiny">
+        <h1 class="font-size-basic" id="site-title"><a class="nav-item" href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
       </div>
-      <div class="grid-item item-s-4 item-m-2">
+      <div class="grid-item item-s-4 item-m-2 margin-bottom-tiny">
         <span class="nav-item js-nav-trigger u-pointer" data-id="about">About</span>
       </div>
-      <div class="grid-item item-s-4 item-m-5">
+      <div class="grid-item item-s-4 item-m-4 item-l-5 margin-bottom-tiny">
         <span class="nav-item js-nav-trigger u-pointer" data-id="stockists">Stockists</span>
       </div>
-      <div class="grid-item item-s-4 item-m-1">
+      <div class="grid-item item-s-4 item-m-2 item-l-1 margin-bottom-tiny">
         <span class="nav-item js-nav-trigger u-pointer" data-id="contact">Contact</span>
       </div>
     </nav>
