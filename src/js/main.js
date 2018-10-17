@@ -16,7 +16,7 @@ class Site {
 
     this.handleNavTrigger = this.handleNavTrigger.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
-    this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleDragStop = this.handleDragStop.bind(this);
     this.handleSectionClose = this.handleSectionClose.bind(this);
     this.positionCustomCursor = this.positionCustomCursor.bind(this);
     this.toggleCursorColor = this.toggleCursorColor.bind(this);
@@ -47,7 +47,6 @@ class Site {
     this.bindNavTriggers();
     this.bindSectionClose();
     this.initDragging();
-    this.bindImageClick();
     this.bindCustomCursor();
     this.bindOverlayClick();
   }
@@ -109,6 +108,7 @@ class Site {
     $('.image-container').draggable({
       stack: '.image-container',
       start: this.handleDragStart,
+      stop: this.handleDragStop
     });
 
     if ($(window).width() < this.mobileThreshold) {
@@ -119,6 +119,10 @@ class Site {
   handleDragStart(event, ui) {
     $('.image-active').removeClass('image-active');
     $(ui.helper).addClass('image-active');
+  }
+
+  handleDragStop(event, ui) {
+    $(ui.helper).removeClass('image-active');
   }
 
   disableDragging(disable) {
@@ -132,16 +136,6 @@ class Site {
         left: 'auto',
       });
     }
-  }
-
-  bindImageClick() {
-    $('.image-container').on('click', this.handleImageClick);
-  }
-
-  handleImageClick(event) {
-    const $image = $(event.target).hasClass('image-container') ? $(event.target) : $(event.target).closest('.image-container');
-    $('.image-active').removeClass('image-active');
-    $image.addClass('image-active');
   }
 
   bindCustomCursor() {

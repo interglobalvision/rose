@@ -104,7 +104,7 @@ var Site = function () {
 
     this.handleNavTrigger = this.handleNavTrigger.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
-    this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleDragStop = this.handleDragStop.bind(this);
     this.handleSectionClose = this.handleSectionClose.bind(this);
     this.positionCustomCursor = this.positionCustomCursor.bind(this);
     this.toggleCursorColor = this.toggleCursorColor.bind(this);
@@ -137,7 +137,6 @@ var Site = function () {
       this.bindNavTriggers();
       this.bindSectionClose();
       this.initDragging();
-      this.bindImageClick();
       this.bindCustomCursor();
       this.bindOverlayClick();
     }
@@ -206,7 +205,8 @@ var Site = function () {
     value: function initDragging() {
       $('.image-container').draggable({
         stack: '.image-container',
-        start: this.handleDragStart
+        start: this.handleDragStart,
+        stop: this.handleDragStop
       });
 
       if ($(window).width() < this.mobileThreshold) {
@@ -218,6 +218,11 @@ var Site = function () {
     value: function handleDragStart(event, ui) {
       $('.image-active').removeClass('image-active');
       $(ui.helper).addClass('image-active');
+    }
+  }, {
+    key: 'handleDragStop',
+    value: function handleDragStop(event, ui) {
+      $(ui.helper).removeClass('image-active');
     }
   }, {
     key: 'disableDragging',
@@ -232,18 +237,6 @@ var Site = function () {
           left: 'auto'
         });
       }
-    }
-  }, {
-    key: 'bindImageClick',
-    value: function bindImageClick() {
-      $('.image-container').on('click', this.handleImageClick);
-    }
-  }, {
-    key: 'handleImageClick',
-    value: function handleImageClick(event) {
-      var $image = $(event.target).hasClass('image-container') ? $(event.target) : $(event.target).closest('.image-container');
-      $('.image-active').removeClass('image-active');
-      $image.addClass('image-active');
     }
   }, {
     key: 'bindCustomCursor',
