@@ -28,7 +28,7 @@ get_template_part('partials/seo');
 
 <section id="main-container">
 
-  <header id="header" class="font-uppercase padding-bottom-basic padding-top-basic font-size-small">
+  <header id="header" class="font-uppercase padding-top-small font-size-small">
     <nav class="container grid-row">
       <div class="grid-item item-s-12 item-m-4 margin-bottom-tiny">
         <h1 class="font-size-small" id="site-title"><a class="nav-item" href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
