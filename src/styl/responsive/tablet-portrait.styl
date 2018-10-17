@@ -24,14 +24,30 @@
   .mobile-only
     display: none !important
 
+  #cursor
+    position: absolute
+    z-index: 1000
+    top: 200vh
+    left: 200vw
+    pointer-events: none
+    cursor: none
+    path
+      fill: $color-black
+    &.hide
+      visibility: hidden
+
   #site-title
     text-align: center
+
+  .nav-item
+    padding: $margin-micro
 
   // OVERLAY
 
   body,
   html
     overflow: hidden
+    cursor: none
 
   body
     &.overlay-active
@@ -77,6 +93,7 @@
 
   .section-close
     pointer-events: auto
+    cursor: pointer
 
   #contact
     .section-close-holder

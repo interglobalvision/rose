@@ -26,6 +26,9 @@ $header-height = 102px
   left: 0
   width: 100%
 
+.nav-item
+  padding: $margin-micro
+
 .section-close-holder
   display: none
 
@@ -35,12 +38,10 @@ $header-height = 102px
 .image-container
   position: relative
   margin: 0 auto $margin-small
-  cursor: grab
   &.image-active
+    cursor: none
     .image-filter
       opacity: 0
-  &:active
-    cursor: grabbing
 
 .image-holder
   position: relative

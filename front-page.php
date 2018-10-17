@@ -26,6 +26,9 @@ if (have_posts()) {
     .nav-item.active {
       color: <?php echo !empty($accent_color) ? $accent_color : '#000000'; ?>
     }
+    #cursor.down path {
+      fill: <?php echo !empty($accent_color) ? $accent_color : '#000000'; ?>
+    }
   </style>
 
 <?php
@@ -107,7 +110,7 @@ if (have_posts()) {
     <div class="section-close-holder">
       <div class="container grid-row justify-end">
         <div class="grid-item item-s-1">
-          <span class="section-close u-pointer"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" </span>
+          <span class="section-close"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" </span>
         </div>
       </div>
     </div>
@@ -137,7 +140,7 @@ if (have_posts()) {
     <div class="section-close-holder">
       <div class="container grid-row justify-end">
         <div class="grid-item item-s-1">
-          <span class="section-close u-pointer"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" </span>
+          <span class="section-close"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" </span>
         </div>
       </div>
     </div>
@@ -162,7 +165,7 @@ if (have_posts()) {
     <div class="section-close-holder">
       <div class="container grid-row justify-end">
         <div class="grid-item item-s-1">
-          <span class="section-close u-pointer"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" /></span>
+          <span class="section-close"><img class="close-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/img/rose-close.svg" /></span>
         </div>
       </div>
     </div>

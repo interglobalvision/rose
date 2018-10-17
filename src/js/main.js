@@ -18,6 +18,11 @@ class Site {
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleSectionClose = this.handleSectionClose.bind(this);
+    this.positionCustomCursor = this.positionCustomCursor.bind(this);
+    this.toggleCursorColor = this.toggleCursorColor.bind(this);
+    this.toggleCursorVisibility = this.toggleCursorVisibility.bind(this);
+
+    this.$cursor = $('#cursor');
 
     $(window).resize(this.onResize.bind(this));
 
@@ -42,6 +47,7 @@ class Site {
     this.bindSectionClose();
     this.initDragging();
     this.bindImageClick();
+    this.bindCustomCursor();
   }
 
   fixWidows() {
@@ -134,6 +140,46 @@ class Site {
     const $image = $(event.target).hasClass('image-container') ? $(event.target) : $(event.target).closest('.image-container');
     $('.image-active').removeClass('image-active');
     $image.addClass('image-active');
+  }
+
+  bindCustomCursor() {
+    this.cursorHeight = this.$cursor.height();
+    this.cursorWidth = this.$cursor.width();
+
+    $(document).on({
+      'mousemove': this.positionCustomCursor,
+      'mousedown': this.toggleCursorColor,
+      'mouseup': this.toggleCursorColor,
+    });
+
+    /*document.addEventListener('mousemove', this.positionCustomCursor);
+    document.addEventListener('mousedown', this.toggleCursorColor);
+    document.addEventListener('mouseup', this.toggleCursorColor);*/
+
+    $('a, .nav-item, .section-close').on({
+      'mouseenter': this.toggleCursorVisibility,
+      'mouseleave': this.toggleCursorVisibility
+    });
+  }
+
+  positionCustomCursor(event) {
+    const mouseY = event.clientY - (this.cursorHeight / 2);
+    const mouseX = event.clientX - (this.cursorWidth / 2);
+
+    console.log(mouseY, mouseX);
+
+    this.$cursor.css({
+      top: mouseY + 'px',
+      left: mouseX + 'px'
+    });
+  }
+
+  toggleCursorColor() {
+    this.$cursor.toggleClass('down');
+  }
+
+  toggleCursorVisibility() {
+    this.$cursor.toggleClass('hide');
   }
 }
 
