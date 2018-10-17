@@ -17,6 +17,9 @@ if (have_posts()) {
 ?>
 
   <style type="text/css">
+    ::selection {
+      background: <?php echo !empty($filter_color) ? $filter_color : 'default'; ?>;
+    }
     .image-filter {
       background-color: <?php echo !empty($filter_color) ? $filter_color : 'transparent'; ?>;
     }

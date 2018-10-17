@@ -7,6 +7,7 @@ $margin-basic = ($gutter * 2)
 $margin-mid = ($gutter * 3.5)
 $margin-large = ($gutter * 5)
 
+$font-size-small = 9px
 $font-size-basic = 12px
 $font-size-mid = 15px
 $font-size-large = 21px
@@ -17,7 +18,7 @@ space-maker($margin-micro, $margin-tiny, $margin-small, $margin-basic, $margin-m
 
 font-sizes($font-size-basic, false, $font-size-large, $font-size-mid, $font-size-small)
 
-$header-height = 102px
+$header-height = 52px + $margin-basic
 
 #header
   z-index: 900
@@ -28,6 +29,7 @@ $header-height = 102px
 
 .nav-item
   padding: $margin-micro
+  cursor: pointer
 
 .section-close-holder
   display: none
@@ -38,7 +40,7 @@ $header-height = 102px
 .image-container
   position: relative
   margin: 0 auto $margin-small
-  &.image-active
+  &.image-active, &:hover
     cursor: none
     .image-filter
       opacity: 0
@@ -46,6 +48,9 @@ $header-height = 102px
 .image-holder
   position: relative
   font-size: 0
+  img
+    &::selection
+      background: transparent
 
 .image-filter
   position: absolute
