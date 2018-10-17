@@ -12,7 +12,15 @@ if (have_posts()) {
     $images = get_post_meta($post->ID, '_igv_images', true);
     $stockists = get_post_meta($post->ID, '_igv_stockists', true);
     $contact = get_post_meta($post->ID, '_igv_contact', true);
+    $filter_color = get_post_meta($post->ID, '_igv_image_color', true);
+    $accent_color = get_post_meta($post->ID, '_igv_accent_color', true);
 ?>
+
+  <style type="text/css">
+    .image-filter {
+      background-color: <?php echo !empty($filter_color) ? $filter_color : 'transparent'; ?>;
+    }
+  </style>
 
 <?php
   if (!empty($images)) {
@@ -22,15 +30,49 @@ if (have_posts()) {
     <?php
       foreach ($images as $image) {
     ?>
-      <div class="image-container grid-item">
+      <style type="text/css">
+        <?php
+          echo '#image-' . $image['image_id'] . ' {';
+          echo !empty($image['scale']) ? '
+            width: calc(96vw*' . $image['scale'] . ');
+          ' : '
+            width: 96vw;
+          ';
+          echo '}'
+        ?>
+        @media screen and (min-width: 720px) {
+          <?php
+            echo '#image-' . $image['image_id'] . ' {';
+            echo !empty($image['scale']) ? '
+              width: calc(40vw*' . $image['scale'] . ');
+              height: calc(40vh*' . $image['scale'] . ');
+            ' : '
+              width: 40vw;
+              height: 40vh;
+            ';
+            echo !empty($image['top']) ? '
+              top: ' . $image['top'] . 'vh;
+            ' : '
+              top: 10vh;
+            ';
+            echo !empty($image['left']) ? '
+              left: ' . $image['left'] . 'vw;
+            ' : '
+              left: 10vw;
+            ';
+            echo '}'
+          ?>
+        }
+      </style>
+      <div id="image-<?php echo $image['image_id']; ?>" class="image-container grid-item">
         <div class="image-holder">
           <?php echo wp_get_attachment_image($image['image_id'], 'full'); ?>
           <div class="image-filter"></div>
-        <div>
+        </div>
       <?php
         if (!empty($image['caption'])) {
       ?>
-        <div class="image-caption">
+        <div class="image-caption padding-top-micro">
           <?php echo apply_filters('the_content', $image['caption']); ?>
         </div>
       <?php

@@ -3,6 +3,7 @@
 
 // Import dependencies
 import lazySizes from 'lazysizes';
+import 'jquery-ui';
 
 // Import style
 import '../styl/site.styl';
@@ -20,7 +21,11 @@ class Site {
   }
 
   onResize() {
-
+    if ($(window).width() < 720) {
+      this.disableDragging(true);
+    } else {
+      this.disableDragging(false);
+    }
   }
 
   onReady() {
@@ -28,6 +33,7 @@ class Site {
 
     this.bindNavTriggers();
     this.bindSectionClose();
+    this.initDragging();
   }
 
   fixWidows() {
@@ -58,6 +64,26 @@ class Site {
   bindSectionClose() {
     $('.section-close').on('click', function(){
       $('.content-overlay.show').removeClass('show');
+    });
+  }
+
+  initDragging() {
+    $('.image-container').draggable({
+      stack: '.image-container',
+      start: function(event, ui) {
+        $('.image-active').removeClass('image-active');
+        $(ui.helper).addClass('image-active');
+      },
+    });
+
+    if ($(window).width() < 720) {
+      this.disableDragging(true);
+    }
+  }
+
+  disableDragging(disable) {
+    $( ".image-container" ).draggable({
+      disabled: disable
     });
   }
 }

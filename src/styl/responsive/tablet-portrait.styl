@@ -23,7 +23,11 @@
     display: none !important
 
   // OVERLAY
-  
+
+  body,
+  html
+    overflow: hidden
+
   .content-overlay
     position: fixed
     top: 0
@@ -39,19 +43,14 @@
 
   // IMAGES
 
+  section#images
+    z-index: 0
+
   .image-container
     position: fixed
-
-  .image-holder
-    img
-      max-width: 40vw
-      max-height: 40vh
-      width: auto
-      height: auto
-
-  .image-filter
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    max-width: 40vw
+    max-height: 40vh
+    margin: 0
+    &.image-active
+      .image-filter
+        opacity: 0

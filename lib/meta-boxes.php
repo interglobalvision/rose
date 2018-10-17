@@ -121,6 +121,24 @@ function igv_cmb_metaboxes() {
     ) );
 
     $images_metabox->add_group_field( $images_group, array(
+      'name'       => esc_html__( 'Top 0 - 100', 'cmb2' ),
+      'id'         => 'top',
+      'type'       => 'text_small',
+    ) );
+
+    $images_metabox->add_group_field( $images_group, array(
+      'name'       => esc_html__( 'Left 0 - 100', 'cmb2' ),
+      'id'         => 'left',
+      'type'       => 'text_small',
+    ) );
+
+    $images_metabox->add_group_field( $images_group, array(
+      'name'       => esc_html__( 'Scale 0.0 - 1.0', 'cmb2' ),
+      'id'         => 'scale',
+      'type'       => 'text_small',
+    ) );
+
+    $images_metabox->add_group_field( $images_group, array(
       'name'       => esc_html__( 'Caption', 'cmb2' ),
       'id'         => 'caption',
       'type'       => 'wysiwyg',
