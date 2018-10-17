@@ -32,13 +32,17 @@
     left: 200vw
     pointer-events: none
     cursor: none
-    width: 24px
-    height: 31px
     visibility: visible
+    g
+      visibility: hidden
+      &.show
+        visibility: visible
     path
       fill: $color-black
     &.hide
       visibility: hidden
+      g.show
+        visibility: hidden
 
   #site-title
     text-align: center

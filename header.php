@@ -26,7 +26,7 @@ get_template_part('partials/seo');
 <body <?php body_class(); ?>>
 <!--[if lt IE 9]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
 
-<?php get_template_part('partials/rose-cursor.svg'); ?>
+<?php get_template_part('partials/rose-cursor-anim.svg'); ?>
 
 <section id="main-container">
 
