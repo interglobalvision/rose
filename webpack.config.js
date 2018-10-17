@@ -17,7 +17,10 @@ module.exports = {
 		"jquery": "jQuery" // We declare jQuery as an externa dependency because we add it thru worpdress enqueue
 	},
 	resolve: {
-		extensions: ['.js', '.css', '.styl', '.svg']
+		extensions: ['.js', '.css', '.styl', '.svg'],
+    alias: {
+      'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
+    }
 	},
 
 	module: {
