@@ -26,6 +26,9 @@ if (have_posts()) {
     .image-active a,
     .image-active a:visited,
     .image-active a:active,
+    .image-container:hover a,
+    .image-container:hover a:visited,
+    .image-container:hover a:active,
     .nav-item.active {
       color: <?php echo !empty($accent_color) ? $accent_color : '#000000'; ?>
     }
