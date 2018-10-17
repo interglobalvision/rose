@@ -21,6 +21,7 @@ class Site {
     this.positionCustomCursor = this.positionCustomCursor.bind(this);
     this.toggleCursorColor = this.toggleCursorColor.bind(this);
     this.toggleCursorVisibility = this.toggleCursorVisibility.bind(this);
+    this.handleOverlayClick = this.handleOverlayClick.bind(this);
 
     this.$cursor = $('#cursor');
 
@@ -48,6 +49,7 @@ class Site {
     this.initDragging();
     this.bindImageClick();
     this.bindCustomCursor();
+    this.bindOverlayClick();
   }
 
   fixWidows() {
@@ -175,6 +177,15 @@ class Site {
 
   toggleCursorVisibility() {
     this.$cursor.toggleClass('hide');
+  }
+
+  bindOverlayClick() {
+    $('.section-content-holder').on('click', this.handleOverlayClick);
+  }
+
+  handleOverlayClick(event) {
+    if (!$(event.target).hasClass('section-content-holder')) { return; }
+    this.handleSectionClose();
   }
 }
 

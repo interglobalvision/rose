@@ -109,6 +109,7 @@ var Site = function () {
     this.positionCustomCursor = this.positionCustomCursor.bind(this);
     this.toggleCursorColor = this.toggleCursorColor.bind(this);
     this.toggleCursorVisibility = this.toggleCursorVisibility.bind(this);
+    this.handleOverlayClick = this.handleOverlayClick.bind(this);
 
     this.$cursor = $('#cursor');
 
@@ -138,6 +139,7 @@ var Site = function () {
       this.initDragging();
       this.bindImageClick();
       this.bindCustomCursor();
+      this.bindOverlayClick();
     }
   }, {
     key: 'fixWidows',
@@ -283,6 +285,19 @@ var Site = function () {
     key: 'toggleCursorVisibility',
     value: function toggleCursorVisibility() {
       this.$cursor.toggleClass('hide');
+    }
+  }, {
+    key: 'bindOverlayClick',
+    value: function bindOverlayClick() {
+      $('.section-content-holder').on('click', this.handleOverlayClick);
+    }
+  }, {
+    key: 'handleOverlayClick',
+    value: function handleOverlayClick(event) {
+      if (!$(event.target).hasClass('section-content-holder')) {
+        return;
+      }
+      this.handleSectionClose();
     }
   }]);
 
