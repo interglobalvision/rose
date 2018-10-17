@@ -106,7 +106,13 @@ var Site = function () {
 
   _createClass(Site, [{
     key: 'onResize',
-    value: function onResize() {}
+    value: function onResize() {
+      if ($(window).width() < 720) {
+        this.disableDragging(true);
+      } else {
+        this.disableDragging(false);
+      }
+    }
   }, {
     key: 'onReady',
     value: function onReady() {
@@ -160,6 +166,17 @@ var Site = function () {
           $('.image-active').removeClass('image-active');
           $(ui.helper).addClass('image-active');
         }
+      });
+
+      if ($(window).width() < 720) {
+        this.disableDragging(true);
+      }
+    }
+  }, {
+    key: 'disableDragging',
+    value: function disableDragging(disable) {
+      $(".image-container").draggable({
+        disabled: disable
       });
     }
   }]);

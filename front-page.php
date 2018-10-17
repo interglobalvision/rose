@@ -33,25 +33,36 @@ if (have_posts()) {
       <style type="text/css">
         <?php
           echo '#image-' . $image['image_id'] . ' {';
-          echo !empty($image['top']) ? '
-            top: ' . $image['top'] . 'vh;
-          ' : '
-            top: 10vh;
-          ';
-          echo !empty($image['left']) ? '
-            left: ' . $image['left'] . 'vw;
-          ' : '
-            left: 10vw;
-          ';
           echo !empty($image['scale']) ? '
-            width: calc(40vw*' . $image['scale'] . ');
-            height: calc(40vh*' . $image['scale'] . ');
+            width: calc(96vw*' . $image['scale'] . ');
           ' : '
-            width: 40vw;
-            height: 40vh;
+            width: 96vw;
           ';
           echo '}'
         ?>
+        @media screen and (min-width: 720px) {
+          <?php
+            echo '#image-' . $image['image_id'] . ' {';
+            echo !empty($image['scale']) ? '
+              width: calc(40vw*' . $image['scale'] . ');
+              height: calc(40vh*' . $image['scale'] . ');
+            ' : '
+              width: 40vw;
+              height: 40vh;
+            ';
+            echo !empty($image['top']) ? '
+              top: ' . $image['top'] . 'vh;
+            ' : '
+              top: 10vh;
+            ';
+            echo !empty($image['left']) ? '
+              left: ' . $image['left'] . 'vw;
+            ' : '
+              left: 10vw;
+            ';
+            echo '}'
+          ?>
+        }
       </style>
       <div id="image-<?php echo $image['image_id']; ?>" class="image-container grid-item">
         <div class="image-holder">

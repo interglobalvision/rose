@@ -21,7 +21,11 @@ class Site {
   }
 
   onResize() {
-
+    if ($(window).width() < 720) {
+      this.disableDragging(true);
+    } else {
+      this.disableDragging(false);
+    }
   }
 
   onReady() {
@@ -70,6 +74,16 @@ class Site {
         $('.image-active').removeClass('image-active');
         $(ui.helper).addClass('image-active');
       },
+    });
+
+    if ($(window).width() < 720) {
+      this.disableDragging(true);
+    }
+  }
+
+  disableDragging(disable) {
+    $( ".image-container" ).draggable({
+      disabled: disable
     });
   }
 }
