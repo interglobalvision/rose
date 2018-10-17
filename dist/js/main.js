@@ -98,6 +98,9 @@ var Site = function () {
     this.mobileThreshold = 601;
 
     this.handleNavTrigger = this.handleNavTrigger.bind(this);
+    this.handleDragStart = this.handleDragStart.bind(this);
+    this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleSectionClose = this.handleSectionClose.bind(this);
 
     $(window).resize(this.onResize.bind(this));
 
@@ -121,6 +124,7 @@ var Site = function () {
       this.bindNavTriggers();
       this.bindSectionClose();
       this.initDragging();
+      this.bindImageClick();
     }
   }, {
     key: 'fixWidows',
@@ -140,32 +144,38 @@ var Site = function () {
   }, {
     key: 'handleNavTrigger',
     value: function handleNavTrigger(event) {
-      var sectionId = $(event.target).attr('data-id');
+      var $navItem = $(event.target);
+      var sectionId = $navItem.attr('data-id');
       var $section = $('.content-overlay#' + sectionId);
 
       if ($section.hasClass('show')) {
-        $section.removeClass('show');
+        this.handleSectionClose();
       } else {
         $('.content-overlay.show').removeClass('show');
+        $('.nav-item.active').removeClass('active');
         $section.addClass('show');
+        $navItem.addClass('active');
+        $('body').addClass('overlay-active');
       }
     }
   }, {
     key: 'bindSectionClose',
     value: function bindSectionClose() {
-      $('.section-close').on('click', function () {
-        $('.content-overlay.show').removeClass('show');
-      });
+      $('.section-close').on('click', this.handleSectionClose);
+    }
+  }, {
+    key: 'handleSectionClose',
+    value: function handleSectionClose() {
+      $('.content-overlay.show').removeClass('show');
+      $('.nav-item.active').removeClass('active');
+      $('body').removeClass('overlay-active');
     }
   }, {
     key: 'initDragging',
     value: function initDragging() {
       $('.image-container').draggable({
         stack: '.image-container',
-        start: function start(event, ui) {
-          $('.image-active').removeClass('image-active');
-          $(ui.helper).addClass('image-active');
-        }
+        start: this.handleDragStart
       });
 
       if ($(window).width() < 720) {
@@ -173,11 +183,36 @@ var Site = function () {
       }
     }
   }, {
+    key: 'handleDragStart',
+    value: function handleDragStart(event, ui) {
+      $('.image-active').removeClass('image-active');
+      $(ui.helper).addClass('image-active');
+    }
+  }, {
     key: 'disableDragging',
     value: function disableDragging(disable) {
       $(".image-container").draggable({
         disabled: disable
       });
+
+      if (disable) {
+        $(".image-container").css({
+          top: 'auto',
+          left: 'auto'
+        });
+      }
+    }
+  }, {
+    key: 'bindImageClick',
+    value: function bindImageClick() {
+      $('.image-container').on('click', this.handleImageClick);
+    }
+  }, {
+    key: 'handleImageClick',
+    value: function handleImageClick(event) {
+      var $image = $(event.target).hasClass('image-container') ? $(event.target) : $(event.target).closest('.image-container');
+      $('.image-active').removeClass('image-active');
+      $image.addClass('image-active');
     }
   }]);
 

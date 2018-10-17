@@ -20,6 +20,12 @@ if (have_posts()) {
     .image-filter {
       background-color: <?php echo !empty($filter_color) ? $filter_color : 'transparent'; ?>;
     }
+    .image-active a,
+    .image-active a:visited,
+    .image-active a:active,
+    .nav-item.active {
+      color: <?php echo !empty($accent_color) ? $accent_color : '#000000'; ?>
+    }
   </style>
 
 <?php
@@ -44,11 +50,9 @@ if (have_posts()) {
           <?php
             echo '#image-' . $image['image_id'] . ' {';
             echo !empty($image['scale']) ? '
-              width: calc(40vw*' . $image['scale'] . ');
-              height: calc(40vh*' . $image['scale'] . ');
+              width: calc(30vw*' . $image['scale'] . ');
             ' : '
-              width: 40vw;
-              height: 40vh;
+              width: 30vw;
             ';
             echo !empty($image['top']) ? '
               top: ' . $image['top'] . 'vh;
@@ -89,13 +93,21 @@ if (have_posts()) {
 ?>
 
   <section id="about" class="content-overlay">
-    <div class="container grid-row justify-center">
-      <div class="grid-row grid-item item-s-11 no-gutter">
-        <div class="section-content grid-item font-size-large item-s-12 item-m-11">
-          <?php the_content(); ?>
+    <div class="section-content-holder">
+      <div class="section-content font-size-large">
+        <div class="container padding-bottom-basic grid-row">
+          <div class="grid-item item-s-12 item-m-10 no-gutter grid-row justify-center">
+            <div class="grid-item item-s-12 item-m-11">
+              <?php the_content(); ?>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="section-close-holder">
+      <div class="container grid-row justify-end">
         <div class="grid-item item-s-1">
-          <div class="section-close u-pointer">X</div>
+          <span class="section-close u-pointer font-size-large">X</span>
         </div>
       </div>
     </div>
@@ -105,39 +117,53 @@ if (have_posts()) {
   if (!empty($stockists)) {
 ?>
   <section id="stockists" class="content-overlay">
-    <div class="container grid-row">
-      <div class="grid-row grid-item item-s-11 no-gutter">
-      <?php
-        foreach ($stockists as $stockist) {
-      ?>
-        <div class="section-content grid-item item-s-12 item-m-4 item-l-3">
-          <?php echo apply_filters('the_content', $stockist['stockist']); ?>
+    <div class="section-content-holder">
+      <div class="section-content">
+        <div class="container padding-bottom-basic grid-row">
+          <div class="grid-item item-s-12 item-m-10 no-gutter grid-row justify-center">
+          <?php
+            foreach ($stockists as $stockist) {
+          ?>
+            <div class="grid-item item-s-6 item-m-4 item-l-3 margin-bottom-small">
+              <?php echo apply_filters('the_content', $stockist['stockist']); ?>
+            </div>
+          <?php
+            }
+          ?>
+          </div>
         </div>
-      <?php
-        }
-      ?>
       </div>
-      <div class="grid-row grid-item item-s-1 no-gutter">
-        <div class="grid-item">
-          <div class="section-close u-pointer">X</div>
+    </div>
+    <div class="section-close-holder">
+      <div class="container grid-row justify-end">
+        <div class="grid-item item-s-1">
+          <span class="section-close u-pointer font-size-large">X</span>
         </div>
       </div>
     </div>
   </section>
 <?php
-  }
+}
 ?>
 
 <?php
   if (!empty($contact)) {
 ?>
   <section id="contact" class="content-overlay">
-    <div class="container grid-row justify-between">
-      <div class="grid-item item-s-4">
-        <div class="section-close u-pointer">X</div>
+    <div class="section-content-holder">
+      <div class="section-content">
+        <div class="container padding-bottom-basic grid-row">
+          <div class="grid-item item-s-12 item-m-8 offset-m-2 text-align-right padding-bottom-basic font-size-mid">
+            <?php echo apply_filters('the_content', $contact); ?>
+          </div>
+        </div>
       </div>
-      <div class="section-content grid-item item-s-12 item-m-8 text-align-right">
-        <?php echo apply_filters('the_content', $contact); ?>
+    </div>
+    <div class="section-close-holder">
+      <div class="container grid-row justify-end">
+        <div class="grid-item item-s-1">
+          <span class="section-close u-pointer font-size-large">X</span>
+        </div>
       </div>
     </div>
   </section>

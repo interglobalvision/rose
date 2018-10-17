@@ -8,21 +8,36 @@ $margin-mid = ($gutter * 3.5)
 $margin-large = ($gutter * 5)
 
 $font-size-basic = 12px
-$font-size-extra = 48px
-$font-size-large = 36px
-$font-size-mid = 24px
-$font-size-small = 18px
-$font-size-tiny = 8px
+$font-size-mid = 14px
+$font-size-large = 24px
 
 grid-maker(96%, $gutter, s)
 
 space-maker($margin-micro, $margin-tiny, $margin-small, $margin-basic, $margin-mid, $margin-large)
 
-font-sizes($font-size-basic, $font-size-extra, $font-size-large, $font-size-mid, $font-size-small, $font-size-tiny)
+font-sizes($font-size-basic, false, $font-size-large, $font-size-mid, $font-size-small)
+
+$header-height = 102px
+
+#header
+  z-index: 900
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+
+.section-close-holder
+  display: none
 
 .image-container
   position: relative
   margin: 0 auto
+  cursor: grab
+  &.image-active
+    .image-filter
+      opacity: 0
+  &:active
+    cursor: grabbing
 
 .image-holder
   position: relative
@@ -36,3 +51,7 @@ font-sizes($font-size-basic, $font-size-extra, $font-size-large, $font-size-mid,
   height: 100%
   mix-blend-mode: screen
   transition: opacity .2s
+
+#images
+  padding-top: $header-height
+  padding-bottom: $margin-basic
