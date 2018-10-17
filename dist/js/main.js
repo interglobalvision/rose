@@ -201,7 +201,7 @@ var Site = function () {
         start: this.handleDragStart
       });
 
-      if ($(window).width() < 720) {
+      if ($(window).width() < this.mobileThreshold) {
         this.disableDragging(true);
       }
     }
