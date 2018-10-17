@@ -169,7 +169,7 @@ class Site {
   }
 
   toggleCursorColor(event) {
-    if (event.which === 3) { return }; // Right-click
+    if (event.which === 3) { return; } // Right-click
     this.$cursor.toggleClass('down');
   }
 

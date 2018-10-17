@@ -276,7 +276,7 @@ var Site = function () {
     value: function toggleCursorColor(event) {
       if (event.which === 3) {
         return;
-      }; // Right-click
+      } // Right-click
       this.$cursor.toggleClass('down');
     }
   }, {
