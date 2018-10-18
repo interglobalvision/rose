@@ -79,7 +79,7 @@ if (have_posts()) {
       </style>
       <div id="image-<?php echo $image['image_id']; ?>" class="image-container grid-item">
         <div class="image-holder">
-          <?php echo wp_get_attachment_image($image['image_id'], 'gallery'); ?>
+          <?php echo wp_get_attachment_image($image['image_id'], 'gallery', false, 'data-no-lazysizes=true'); ?>
           <div class="image-filter"></div>
         </div>
       <?php
