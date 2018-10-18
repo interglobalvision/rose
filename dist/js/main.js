@@ -252,6 +252,8 @@ var Site = function () {
       this.cursorHeight = this.$cursor.height();
       this.cursorWidth = this.$cursor.width();
 
+      $('body').addClass('hide-cursor');
+
       $(document).on({
         'mousemove': this.positionCustomCursor,
         'mousedown': this.toggleCursorColor,
