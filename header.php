@@ -33,7 +33,7 @@ get_template_part('partials/seo');
   <header id="header" class="font-uppercase padding-top-small font-size-small">
     <nav class="container grid-row">
       <div class="grid-item item-s-12 item-m-4 margin-bottom-tiny">
-        <h1 class="font-size-small" id="site-title"><a class="nav-item" href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
+        <h1 class="font-size-small text-align-center" id="site-title"><a class="nav-item" href="<?php echo home_url(); ?>">Rose Los Angeles</a></h1>
       </div>
       <div class="grid-item item-s-4 item-m-2 margin-bottom-tiny">
         <span class="nav-item js-nav-trigger" data-id="about">About</span>
