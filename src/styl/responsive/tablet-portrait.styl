@@ -25,6 +25,11 @@
   .mobile-only
     display: none !important
 
+  body,
+  html
+    overflow: hidden
+    cursor: none
+
   #cursor
     position: absolute
     z-index: 1000
@@ -32,26 +37,19 @@
     left: 200vw
     pointer-events: none
     cursor: none
-    width: 24px
-    height: 31px
     visibility: visible
+    g
+      visibility: hidden
+      &.show
+        visibility: visible
     path
       fill: $color-black
     &.hide
       visibility: hidden
-
-  #site-title
-    text-align: center
-
-  .nav-item
-    padding: $margin-micro
+      g.show
+        visibility: hidden
 
   // OVERLAY
-
-  body,
-  html
-    overflow: hidden
-    cursor: none
 
   body
     &.overlay-active
@@ -115,3 +113,8 @@
     max-width: 30vw
     max-height: 30vh
     margin: 0
+
+  // HEADER
+
+  .nav-item
+    padding: $margin-micro

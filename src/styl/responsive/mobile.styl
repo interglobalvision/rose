@@ -20,6 +20,11 @@ font-sizes($font-size-basic, false, $font-size-large, $font-size-mid, $font-size
 
 $header-height = 52px + $margin-basic
 
+body,
+html
+  min-height: 100%
+  height: 100%
+
 #cursor
   visibility: hidden
 
@@ -43,8 +48,8 @@ $header-height = 52px + $margin-basic
 .image-container
   position: relative
   margin: 0 auto $margin-small
+  cursor: none
   &.image-active, &:hover
-    cursor: none
     .image-filter
       opacity: 0
 

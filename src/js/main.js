@@ -22,8 +22,16 @@ class Site {
     this.toggleCursorColor = this.toggleCursorColor.bind(this);
     this.toggleCursorVisibility = this.toggleCursorVisibility.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
+    this.triggerHair = this.triggerHair.bind(this);
+    this.runHair = this.runHair.bind(this);
 
     this.$cursor = $('#cursor');
+
+    this.hairRate = 100;
+    this.increaseFrame = true;
+    this.firstFrame = 1;
+    this.lastFrame = 5;
+    this.hairFrame = this.firstFrame;
 
     $(window).resize(this.onResize.bind(this));
 
@@ -152,6 +160,8 @@ class Site {
       'mouseenter': this.toggleCursorVisibility,
       'mouseleave': this.toggleCursorVisibility
     });
+
+    this.triggerHair();
   }
 
   positionCustomCursor(event) {
@@ -170,6 +180,7 @@ class Site {
   }
 
   toggleCursorVisibility() {
+    console.log('hide');
     this.$cursor.toggleClass('hide');
   }
 
@@ -180,6 +191,30 @@ class Site {
   handleOverlayClick(event) {
     if (!$(event.target).hasClass('section-content-holder')) { return; }
     this.handleSectionClose();
+  }
+
+  // HAIR ANIMATION
+  triggerHair() {
+    this.hairTimeout = setTimeout(this.runHair, this.hairRate);
+  }
+
+  runHair() {
+    this.hairRequest = window.requestAnimationFrame(this.triggerHair);
+    this.moveHair();
+  }
+
+  moveHair() {
+    this.$cursor.find('g#frame-' + this.hairFrame).removeClass('show');
+
+    this.hairFrame = this.increaseFrame ? this.hairFrame + 1 : this.hairFrame - 1;
+
+    this.$cursor.find('g#frame-' + this.hairFrame).addClass('show');
+
+    if (this.hairFrame === this.lastFrame) {
+      this.increaseFrame = false;
+    } else if (this.hairFrame === this.firstFrame) {
+      this.increaseFrame = true;
+    }
   }
 }
 

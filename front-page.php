@@ -85,7 +85,7 @@ if (have_posts()) {
       <?php
         if (!empty($image['caption'])) {
       ?>
-        <div class="image-caption padding-top-micro font-size-small">
+        <div class="image-caption padding-top-micro font-size-small text-align-center">
           <?php echo apply_filters('the_content', $image['caption']); ?>
         </div>
       <?php
